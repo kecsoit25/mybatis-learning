@@ -3,13 +3,13 @@
 <configuration>
     <!-- 1. properties -->
 	<properties resource="config.properties">
-		<property name="username" value="m2dbtest" />
+		<property name="username" value="mybatis" />
 		<property name="password" value="password123" />
 	</properties>
 	<!-- 2. typeAlias -->
 	<typeAliases>
-  		<typeAlias alias="MyObject" type="test.test1.mybatis.pojo.MyObject"/>
-  		<typeAlias alias="MyObject2" type="test.test1.mybatis.pojo.MyObject"/>
+  		<typeAlias alias="Player" type="test.test1.mybatis.pojo.Player"/>
+  		<typeAlias alias="DbPlayer" type="test.test1.mybatis.pojo.DbPlayer"/>
   	</typeAliases>
   	<!-- 另外一种alias的方式 -->
   	<!-- 注意注解 @Alias 的使用
@@ -41,10 +41,8 @@
 		</environment>
 	</environments>
 
-	<mappers>
-		<!-- 注册userMapper.xml文件， userMapper.xml位于me.gacl.mapping这个包下，所以resource写成me/gacl/mapping/userMapper.xml -->
-		<mapper resource="test/test1/mybatis/mapping/userMapper.xml" />
-		<mapper resource="test/test1/mybatis/mapping/myobjectMapper.xml" />
+	<mappers>	
+		<mapper resource="test/test1/mybatis/mapping/PlayerMapper.xml" />
 	</mappers>
 
 </configuration>
