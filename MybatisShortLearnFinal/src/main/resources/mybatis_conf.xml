@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 1. properties -->
+	<properties resource="config.properties">
+		<property name="username" value="mybatis" />
+		<property name="password" value="password123" />
+	</properties>
+	<settings>
+	
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<!-- 2. typeAlias -->
+	<typeAliases>
+  		<typeAlias alias="Player" type="test.test1.mybatis.pojo.Player"/>
+  		
+  	</typeAliases>
+  	
+  	<!-- 另外一种alias的方式 -->
+  	<!-- 注意注解 @Alias 的使用
+  	<typeAliases>
+  		<package name="domain.blog"/>
+	</typeAliases> 
+	-->
+   <!-- 3 environments -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<!-- 配置数据库连接信息 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${dburl}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+		<environment id="myown">
+			<transactionManager type="JDBC" />
+			<!-- 配置数据库连接信息 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${dburlmyown}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>	
+		<mapper resource="test/test1/mybatis/mapping/PlayerMapper.xml" />
+		<mapper resource="test/test1/mybatis/mapping/QuestionMapper.xml" />
+	</mappers>
+
+</configuration>
