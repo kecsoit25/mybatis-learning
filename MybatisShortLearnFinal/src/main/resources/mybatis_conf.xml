@@ -13,7 +13,8 @@
 	<!-- 2. typeAlias -->
 	<typeAliases>
   		<typeAlias alias="Player" type="test.test1.mybatis.pojo.Player"/>
-  		
+  		<typeAlias alias="Question" type="test.test1.mybatis.pojo.Question"/>
+  		<typeAlias alias="Answer" type="test.test1.mybatis.pojo.Answer"/>
   	</typeAliases>
   	
   	<!-- 另外一种alias的方式 -->
@@ -49,6 +50,7 @@
 	<mappers>	
 		<mapper resource="test/test1/mybatis/mapping/PlayerMapper.xml" />
 		<mapper resource="test/test1/mybatis/mapping/QuestionMapper.xml" />
+		<mapper resource="test/test1/mybatis/mapping/AnswerMapper.xml" />
 	</mappers>
 
 </configuration>

@@ -4,7 +4,7 @@ public class Question {
 	private Integer id;
 	private String value;
 	private Integer credit;
-	private Integer playerId;
+	private Integer player_id;
 	private String isOpen;
 	private Player player;
 
@@ -36,12 +36,12 @@ public class Question {
 		this.credit = credit;
 	}
 
-	public Integer getPlayerId() {
-		return playerId;
+	public Integer getPlayer_id() {
+		return player_id;
 	}
 
-	public void setPlayerId(Integer playId) {
-		this.playerId = playId;
+	public void setPlayer_id(Integer playId) {
+		this.player_id = playId;
 	}
 
 	public String getIsOpen() {

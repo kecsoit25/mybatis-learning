@@ -5,7 +5,7 @@
 
 	<resultMap id="BaseResultMap" type="test.test1.mybatis.pojo.Player">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="name" property="nickname" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
 	
 	<resultMap id="playerQuestionResultMap" type="test.test1.mybatis.pojo.PlayerWithQuestions">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="name" property="nickname" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
@@ -33,29 +33,8 @@
 	<select id="getAllPlayers" resultMap="BaseResultMap">
 		select * from player
 	</select>
-	<select id="getAllPlayersLikeNickname" parameterType="Player" resultMap="BaseResultMap">
-		select * from player
-		<if test="nickname != null and nickname != ''">
-		    where name like '%${nickname}%'
-		</if>
-	</select>
-	<select id="getAllPlayersUseTrimWhere" parameterType="Player" resultMap="BaseResultMap">
-		select * from player
-		<trim prefix="WHERE" prefixOverrides="AND |OR ">
-   			<if test="id != null">
-   			    id = #{id}
-   			</if>
-   			<if test="nickname != null and nickname != ''">
-   				AND name like '%${nickname}%'
-   			</if>
-   			<if test="score != null">
-   			    AND score >= #{score}
-   			</if>
-   			<if test="username != null and username != ''">
-   				AND username like '%${username}%'
-   			</if>
-        </trim>
-	</select>
+	
+	
 	<select id="getPlayersByIds"  resultMap="BaseResultMap">
 		select * from player
 		WHERE ID in
@@ -67,29 +46,31 @@
 	</select>
 	
 	<select id="getPlayerById" parameterType="int"
-		resultType="test.test1.mybatis.pojo.DbPlayer">
+		resultType="test.test1.mybatis.pojo.Player">
 		select * from `player` where id = #{uid}
 	</select>
 	<select id="getPlayerByUsername" parameterType="string"
-		resultType="test.test1.mybatis.pojo.DbPlayer">
+		resultType="test.test1.mybatis.pojo.Player">
 		select * from `player` where username = #{username}
 	</select>
-	<select id="getPlayerByUsernameOK" parameterType="string"
-		resultMap="BaseResultMap">
-		select * from `player` where username = #{username}
-	</select>
+	
 
 	<insert id="insertPlayer" parameterType="Player"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into player (name, score,
 		username, password) values
-		(#{nickname}, #{score}, #{username}, #{password})
+		(#{name}, #{score}, #{username}, #{password})
 	</insert>
 
 	<update id="updatePlayer" parameterType="Player">
 		update player
-		set name=#{nickname}, score = #{score}, username = #{username},
+		set name=#{name}, score = #{score}, username = #{username},
 		password = #{password} where id = #{id}
+	</update>
+	
+	<update id="updatePlayerScore" parameterType="Player">
+		update player set score = #{score} 
+		    where id = #{id}
 	</update>
 
 	<delete id="deletePlayerById" parameterType="int">

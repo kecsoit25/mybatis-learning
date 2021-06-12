@@ -7,7 +7,7 @@
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="value" property="value" jdbcType="VARCHAR" />
 		<result column="credit" property="credit" jdbcType="INTEGER" />
-		<result column="player_id" property="playerId" jdbcType="INTEGER" />
+		<result column="player_id" property="player_id" jdbcType="INTEGER" />
 		<result column="isOpen" property="isOpen" jdbcType="VARCHAR" />
 		<association property="player" column="player_id" javaType="Player"
 			select="selectPlayerById" />
@@ -16,7 +16,7 @@
 	
 	<resultMap id="PlayerResultMap" type="test.test1.mybatis.pojo.Player">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="name" property="nickname" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="score" property="score" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
@@ -29,5 +29,30 @@
 	<select id="selectPlayerById" parameterType="int" resultMap="PlayerResultMap">
 		select * from player where id = #{id}
 	</select>
+	
+	<select id="selectQuestionsByPid" parameterType="int" resultMap="BaseResultMap">
+		select * from question where player_id = #{pid}
+	</select>
+	
+	<select id="selectQuestionById" parameterType="int" resultMap="BaseResultMap">
+		select * from question where id = #{id}
+	</select>
+	
+	<select id="selectOpenQuestions" resultMap="BaseResultMap">
+		select * from question where isOpen = 'Y'
+	</select>
+	
+	<select id="searchQuestions" parameterType="string" resultMap="BaseResultMap">
+		select * from question where value like '%${value}%'
+	</select>
+	
+	<insert id="insertQuestion" parameterType="Question" useGeneratedKeys="true" keyProperty="id">
+		insert into question (value, credit, player_id, isOpen) values
+		    (#{value}, #{credit}, #{player_id}, #{isOpen})
+	</insert>
+	
+	<update id="closeQuestion" parameterType="int">
+		update question set isOpen = 'N' where id = #{id}
+	</update>
 	
 </mapper>

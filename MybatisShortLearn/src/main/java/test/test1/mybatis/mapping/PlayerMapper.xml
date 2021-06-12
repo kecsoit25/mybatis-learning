@@ -12,7 +12,7 @@
 
 	</resultMap>
 	<select id="getAllPlayers" resultMap="BaseResultMap">
-		select * from player
+		select sdf,sdfsdfsdfds,ssx from player
 	</select>
 
 	<select id="getPlayerById" parameterType="int"

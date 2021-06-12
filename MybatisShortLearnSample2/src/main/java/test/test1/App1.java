@@ -29,9 +29,9 @@ public class App1
         
         //创建能执行映射文件中sql的sqlSession
         SqlSession session = sessionFactory.openSession();
-        playerSelectExample(session);
-        playerInsertExample(session);
-        playerUpdateExample(session);
+//        playerSelectExample(session);
+//        playerInsertExample(session);
+//        playerUpdateExample(session);
         playerDeleteExample(session);
         session.close();
     }
@@ -66,15 +66,15 @@ public class App1
         String statement = "test.test1.mybatis.mapping.PlayerMapper.insertPlayer";
         int result = session.insert(statement, player);
         session.commit();
-        System.out.println("update row=" + result + "player:" + player);
+        System.out.println("insert row=" + result + "player:" + player);
     }
     
     private static void playerUpdateExample(SqlSession session) {
     	String statement = "test.test1.mybatis.mapping.PlayerMapper.getPlayerByUsernameOK";
     	Player player = session.selectOne(statement, "beeplayer");
     	System.out.println(player);
-        player.setNickname("beeUpdate");
-        player.setPassword("1qaz@WSX");
+        player.setNickname("beeUpdate2345");
+        player.setPassword("1qaz@WSXwedf");
         player.setScore(40);
         //player.setUsername("beeplayer");//duplicate username error
         //System.out.println(player);
@@ -86,7 +86,7 @@ public class App1
     
     private static void playerDeleteExample(SqlSession session) {
     	String statement = "test.test1.mybatis.mapping.PlayerMapper.deletePlayerById";
-    	int result = session.delete(statement, 45); //select a id first
+    	int result = session.delete(statement, 42); //select a id first
     	System.out.println("delete row=" + result);
     	session.commit();
     	statement = "test.test1.mybatis.mapping.PlayerMapper.getAllPlayers";//映射sql的标识字符串

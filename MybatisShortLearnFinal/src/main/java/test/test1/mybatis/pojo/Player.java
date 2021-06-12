@@ -3,7 +3,7 @@ package test.test1.mybatis.pojo;
 public class Player {
 	private Integer id;
 	
-	private String nickname;
+	private String name;
 	private Integer score;
 	private String username;
 	private String password;
@@ -26,12 +26,12 @@ public class Player {
 		this.id = id;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getName() {
+		return name;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setName(String nickname) {
+		this.name = nickname;
 	}
 
 	public Integer getScore() {
@@ -51,7 +51,7 @@ public class Player {
 	}
 	
 	public String toString() {
-		return "[" + this.getClass().getSimpleName() + ":" + this.id + "," + this.nickname + ","
+		return "[" + this.getClass().getSimpleName() + ":" + this.id + "," + this.name + ","
 				+ this.score + "," + this.username + "," + this.password + "]";
 	}
 

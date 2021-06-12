@@ -5,7 +5,7 @@ import java.util.List;
 public class PlayerWithQuestions {
 	private Integer id;
 	
-	private String nickname;
+	private String name;
 	private Integer score;
 	private String username;
 	private String password;
@@ -29,12 +29,12 @@ public class PlayerWithQuestions {
 		this.id = id;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public String getName() {
+		return name;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setName(String nickname) {
+		this.name = nickname;
 	}
 
 	public Integer getScore() {
@@ -54,7 +54,7 @@ public class PlayerWithQuestions {
 	}
 	
 	public String toString() {
-		return "[" + this.getClass().getSimpleName() + ":" + this.id + "," + this.nickname + ","
+		return "[" + this.getClass().getSimpleName() + ":" + this.id + "," + this.name + ","
 				+ this.score + "," + this.username + "," + this.password + "]";
 	}
 
